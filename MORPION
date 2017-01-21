@@ -1,0 +1,43 @@
+#include <SDL.h>
+#include <iostream>
+
+const int WIDTH=1280;
+const int HEIGHT=720;
+
+int main(int argc, char **argv)
+{
+    SDL_Event event;
+    SDL_Surface *screen;
+    int done = 0;
+    if(SDL_Init(SDL_INIT_VIDEO)!=0)
+    {
+        std::cerr << "Probleme pour initialiser la SDL" << SDL_GetError() << std::endl;
+        return 1;
+    }
+    SDL_WM_SetCaption("Morpion", NULL);
+    screen = SDL_SetVideoMode(WIDTH,HEIGHT, 32,
+                              SDL_DOUBLEBUF | SDL_HWSURFACE);
+    if(screen==NULL)
+        done = 1;
+    while(!done)
+    {
+        while(SDL_PollEvent(&event))
+        {
+            switch(event.type)
+            {
+                case SDL_QUIT:
+                done=1;
+                break;
+                case SDL_KEYUP:
+                if(event.key.keysym.sym==SDLK_q)
+                    done=1;
+                break;
+                default:
+                break;
+            }
+        }
+    }
+
+    SDL_Quit();
+    return 0;
+}
