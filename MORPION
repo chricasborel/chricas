@@ -2,14 +2,14 @@
 #include <iostream>
 
 const int WIDTH=1280;
-const int HEIGHT=720;
+const int HEIGHT=720;//dimension de la fenetre en pixels
 
 int main(int argc, char **argv)
 {
     SDL_Event event;
     SDL_Surface *screen;
     int done = 0;
-    if(SDL_Init(SDL_INIT_VIDEO)!=0)
+    if(SDL_Init(SDL_INIT_VIDEO)!=0)//support video
     {
         std::cerr << "Probleme pour initialiser la SDL" << SDL_GetError() << std::endl;
         return 1;
@@ -41,3 +41,4 @@ int main(int argc, char **argv)
     SDL_Quit();
     return 0;
 }
+//il te manque les commentaires et je sais pas si c'est du C ou Cpp j'imagine que c'est du Cpp
